@@ -1,78 +1,77 @@
-import React from 'react';
-import {getData} from './localStorage';
+import React, { useState } from 'react';
+import { getData } from './localStorage';
 
 const Report = () => {
-    const data = getData();
-    const [costs, setCosts] = React.useState(Array.isArray(data) ? data : []);
-    const [month, setMonth] = React.useState("");
-    const [year, setYear] = React.useState("");
-    const [filteredCosts, setFilteredCosts] = React.useState([]);
+    // states for the month and year selection
+    const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
+    const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+    const [displayedCosts, setDisplayedCosts] = useState([]);
 
-    const handleChange = e => {
-        if (e.target.name === "month") {
-            setMonth(e.target.value);
-        } else {
-            setYear(e.target.value);
-        }
+    // functions that handle the change of the month selection
+    const handleMonthChange = (e) => {
+        setSelectedMonth(e.target.value);
     };
 
-    const filterCosts = () => {
-        setFilteredCosts(costs.filter(
-            cost =>
-                new Date(cost.date).getMonth() === Number(month) - 1 &&
-                new Date(cost.date).getFullYear() === Number(year)
-        ))
-    }
+    // function that handles the change of the year selection
+    const handleYearChange = (e) => {
+        setSelectedYear(e.target.value);
+    };
+
+    // function that handles the report generation
+    const handleReportGeneration = () => {
+        // getting the data from local storage with the getData async function
+        const costs = JSON.parse(localStorage.getItem('costs')) || [];
+        // filtering the costs by the selected month and year
+        const filteredCosts = costs.filter(cost => {
+            const costDate = new Date(cost.Date);
+            return costDate.getMonth() === selectedMonth && costDate.getFullYear() === selectedYear;
+        });
+        // setting the filtered costs to the displayed costs
+        setDisplayedCosts(filteredCosts);
+    };
 
     return (
         <div>
-            <form>
-                <label>
-                    Month:
-                    <select name="month" onChange={handleChange}>
-                        <option value="">Select a month</option>
-                        <option value="1">January</option>
-                        <option value="2">February</option>
-                        <option value="3">March</option>
-                        <option value="4">April</option>
-                        <option value="5">May</option>
-                        <option value="6">June</option>
-                        <option value="7">July</option>
-                        <option value="8">August</option>
-                        <option value="9">September</option>
-                        <option value="10">October</option>
-                        <option value="11">November</option>
-                        <option value="12">December</option>
-                    </select>
-                </label>
-                <br />
-                <label>
-                    Year:
-                    <select name="year" onChange={handleChange}>
-                        <option value="">Select a year</option>
-                        <option value="2022">2022</option>
-                        <option value="2021">2021</option>
-                        //..
-                    </select>
-                </label>
-                <button onClick={filterCosts}>Show filtered costs</button>
-            </form>
+            <div>
+                <label>Month:</label>
+                <select value={selectedMonth} onChange={handleMonthChange}>
+                    <option value={0}>January</option>
+                    <option value={1}>February</option>
+                    <option value={2}>March</option>
+                    <option value={3}>April</option>
+                    <option value={4}>May</option>
+                    <option value={5}>June</option>
+                    <option value={6}>July</option>
+                    <option value={7}>August</option>
+                    <option value={8}>September</option>
+                    <option value={9}>October</option>
+                    <option value={10}>November</option>
+                    <option value={11}>December</option>
+                </select>
+                <label>Year:</label>
+                <input type="number" value={selectedYear} onChange={handleYearChange} />
+            </div>
+            <button onClick={handleReportGeneration}>Generate Report</button>
             <table>
                 <thead>
-                    <tr>
-                        <th>Sum</th>
-                        <th>Category</th>
-                        <th>Description</th>
-                    </tr>
+                    <th>Date</th>
+                    <th>Category</th>
+                    <th>Quantity</th>
+                    <th>Description</th>
+                    <th>Sum</th>
                 </thead>
                 <tbody>
-                    {filteredCosts.map((cost, index) => (
-                        <tr key={index}>
-                            <td>{cost.sum}</td>
-                            <td>{cost.category}</td>
-                            <td>{cost.description}</td>
-                        </tr>
-                    ))}
+                    {displayedCosts.map((cost, index) => {
+                        return (
+                            <tr key={index}>
+                                <td>{cost.Date}</td>
+                                <td>{cost.Category}</td>
+                                <td>{cost.Quantity}</td>
+                                <td>{cost.Description}</td>
+                                <td>{cost.Sum}</td>
+                            </tr>
+                        );
+                    })}
                 </tbody>
             </table>
         </div>
@@ -80,3 +79,6 @@ const Report = () => {
 };
 
 export default Report;
+
+
+

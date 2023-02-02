@@ -18,7 +18,7 @@ function App() {
     }, [costs]);
 
     return (
-        <div>
+        <div class = "mainDiv">
             <Costs costs={costs} setCosts={setCosts} />
             <Report costs={getData()} />
         </div>

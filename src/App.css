@@ -1,11 +1,11 @@
-/* form {
-  margin-bottom: 20px;
+html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: rgb(124, 124, 124);
+  font: 14px "Century Gothic", Futura, sans-serif;
 }
-
-label {
-  display: flexbox;
-  margin-bottom: 10px;
-} */
 
 body {
   height: 100%;
@@ -15,72 +15,95 @@ body {
   background-color: rgb(124, 124, 124);
 }
 
+#root {
+  height: 100%;
+}
+
+.mainDiv {
+  height: 100%;
+}
+
 .form_div {
   height: 50%;
   width: 100%;
   background-color: rgb(124, 124, 124);
   display: flex;
-  justify-content: center;
-  align-items: center
-  
+  justify-content: left;
+  align-items: top;
 }
 
 .costsForm {
   height: 100%;
-  width: 300px;
+  width: 500px;
   background-color: rgb(222, 223, 225);
 }
 
 .costsFormInputLabel {
- height: 500px;
+ height: 20px;
+ width: 100%;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ margin-top: 15px
 }
 
+.costsFormInputLabel .textDiv {
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ }
+
 .costsFormInput {
-  width: 10%;
-  margin: 10px;
+  width: 50%;
 }
 
 .costsTable {
-  background-color: pink;
-  width: calc(100% - 300px);
-}
-
-/* input[type="number"],
-input[type="text"],
-select {
-  width: 20%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-} */
-
-/* button {
-  width: 100%;
-  background-color: #4CAF50;
+  background-color: rgb(255, 255, 255);
+  width: calc(100% - 500px);
+  align-items: center;
   color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-} */
+  border: 1px solid black;
+  padding: 0;
+  border-spacing: 0px;
+}
 
-/* table {
+.costsTable tr {
+  background-color: rgb(47, 95, 191);
   width: 100%;
-  border-collapse: collapse;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: whitesmoke;
+  font-size: large;
 }
 
-th, td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
+.costsTable thead{
+  background-color: rgb(47, 95, 191);
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: larger;
+  border-bottom: 1px solid black;
 }
 
-th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  background-color: #4CAF50;
-  color: white;
-} */
+.costsTable th {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: Center;
+  align-items: center;
+  border-right: 1px solid black;
+} 
+
+.costsTable tr {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: Center;
+  align-items: center;
+} 
+
