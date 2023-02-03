@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getData } from './localStorage';
 
-const Report = () => {
+const Report = (props) => {
     // states for the month and year selection
     const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
     const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
@@ -9,24 +9,21 @@ const Report = () => {
 
     // functions that handle the change of the month selection
     const handleMonthChange = (e) => {
-        setSelectedMonth(e.target.value);
+        setSelectedMonth(Number(e.target.value));
     };
 
     // function that handles the change of the year selection
     const handleYearChange = (e) => {
-        setSelectedYear(e.target.value);
+        setSelectedYear(Number(e.target.value));
     };
 
-    // function that handles the report generation
-    const handleReportGeneration = () => {
-        // getting the data from local storage with the getData async function
-        const costs = JSON.parse(localStorage.getItem('costs')) || [];
-        // filtering the costs by the selected month and year
-        const filteredCosts = costs.filter(cost => {
-            const costDate = new Date(cost.Date);
-            return costDate.getMonth() === selectedMonth && costDate.getFullYear() === selectedYear;
+      const handleReportGeneration = async () => {
+        let costs = await getData('costs');
+
+        let filteredCosts = costs.filter(cost => {
+            let date = new Date(cost.Date);
+            return date.getMonth() === selectedMonth && date.getFullYear() === selectedYear;
         });
-        // setting the filtered costs to the displayed costs
         setDisplayedCosts(filteredCosts);
     };
 
@@ -63,7 +60,7 @@ const Report = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {displayedCosts.map((cost, index) => {
+                    {displayedCosts?.map((cost, index) => {
                         return (
                             <tr key={index}>
                                 <td>{cost.Date}</td>
