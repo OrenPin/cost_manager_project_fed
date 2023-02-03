@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getData } from './localStorage';
+// import { getData } from './localStorage';
 
 const Report = () => {
     // states for the month and year selection
@@ -17,18 +17,31 @@ const Report = () => {
         setSelectedYear(e.target.value);
     };
 
-    // function that handles the report generation
-    const handleReportGeneration = () => {
-        // getting the data from local storage with the getData async function
-        const costs = JSON.parse(localStorage.getItem('costs')) || [];
-        // filtering the costs by the selected month and year
+    const getData = async () => {
+        return JSON.parse(await localStorage.getItem('costs')) || [];
+      };
+
+      const handleReportGeneration = async () => {
+        const costs = await getData();
         const filteredCosts = costs.filter(cost => {
             const costDate = new Date(cost.Date);
             return costDate.getMonth() === selectedMonth && costDate.getFullYear() === selectedYear;
         });
-        // setting the filtered costs to the displayed costs
         setDisplayedCosts(filteredCosts);
     };
+
+    // function that handles the report generation
+    // const handleReportGeneration = () => {
+    //     // getting the data from local storage with the getData async function
+    //     const costs = JSON.parse(localStorage.getItem('costs')) || [];
+    //     // filtering the costs by the selected month and year
+    //     const filteredCosts = costs.filter(cost => {
+    //         const costDate = new Date(cost.Date);
+    //         return costDate.getMonth() === selectedMonth && costDate.getFullYear() === selectedYear;
+    //     });
+    //     // setting the filtered costs to the displayed costs
+    //     setDisplayedCosts(filteredCosts);
+    // };
 
     return (
         <div>
