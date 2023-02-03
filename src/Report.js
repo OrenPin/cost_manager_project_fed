@@ -54,11 +54,13 @@ const Report = () => {
             <button onClick={handleReportGeneration}>Generate Report</button>
             <table>
                 <thead>
+                    <tr>
                     <th>Date</th>
                     <th>Category</th>
                     <th>Quantity</th>
                     <th>Description</th>
                     <th>Sum</th>
+                    </tr>
                 </thead>
                 <tbody>
                     {displayedCosts.map((cost, index) => {
