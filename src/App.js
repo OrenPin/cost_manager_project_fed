@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Costs from "./Costs";
 import Report from "./Report";
 import { saveData, getData } from "./localStorage";
@@ -12,21 +12,13 @@ function App() {
         new Field("Quantity", "number", "Quantity"),
         new Field("Description", "text", "Description"),
         new Field("Sum", "number", "Sum"),
-    ]
-
-    useEffect(() => {
-        const data = getData("costs");
-        setCosts(data);
-    }, []);
-
-    useEffect(() => {
-        saveData("costs", costs);
-    }, [costs]);
+        new Field("Date", "date", "Date"),
+    ];
 
     return (
         <div className = "mainDiv">
             <Costs costs={costs} setCosts={setCosts} fields={fields} />
-            <Report costs={getData()} />
+            <Report costs={[]} />
         </div>
     );
 }

@@ -3,7 +3,7 @@ import { saveData } from './localStorage';
 
 const Costs = (props) => {
     // use state for the costs for useEffect rendering and the current cost for the form
-    const [currCost, setCurrCost] = useState({Date: new Date()});
+    const [currCost, setCurrCost] = useState({});
     const [costs, setCosts] = useState([]);
 
     // function that handles the change of the input fields
@@ -19,7 +19,7 @@ const Costs = (props) => {
     const handleSubmit = e => {
         e.preventDefault();
         setCosts([...costs, currCost]);
-        setCurrCost({Date: new Date()});
+        setCurrCost({});
 
         // reset the values in currCost
         setCurrCost({
@@ -27,7 +27,7 @@ const Costs = (props) => {
             Quantity: '',
             Description: '',
             Sum: '',
-            Date: new Date()
+            Date: '',
         });
     };
 
@@ -53,7 +53,7 @@ const Costs = (props) => {
                 );
             })}
             <button type="submit">Add</button>
-            </form>
+        </form>
             <table className = "costsTable">
                 <thead>
                     <tr>
@@ -61,12 +61,13 @@ const Costs = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {costs.map((cost, index) => {
+                    {costs?.map((cost, index) => {
                         return( <tr key={index}>
                             <td>{cost.Category}</td>
                             <td>{cost.Quantity}</td>
                             <td>{cost.Description}</td>
                             <td>{cost.Sum}</td>
+                            <td>{cost.Date}</td>
                         </tr>);
                 })}
                 </tbody>
