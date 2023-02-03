@@ -9,17 +9,15 @@ const Report = (props) => {
 
     // functions that handle the change of the month selection
     const handleMonthChange = (e) => {
-        setSelectedMonth(Number(e.target.value));
+        const date = new Date(e.target.value);
+        setSelectedYear(date.getFullYear())
+        setSelectedMonth(date.getMonth());
     };
 
     // function that handles the change of the year selection
-    const handleYearChange = (e) => {
-        setSelectedYear(Number(e.target.value));
-    };
 
       const handleReportGeneration = async () => {
         let costs = await getData('costs');
-
         let filteredCosts = costs.filter(cost => {
             let date = new Date(cost.Date);
             return date.getMonth() === selectedMonth && date.getFullYear() === selectedYear;
@@ -30,23 +28,10 @@ const Report = (props) => {
     return (
         <div>
             <div>
-                <label>Month:</label>
-                <select value={selectedMonth} onChange={handleMonthChange}>
-                    <option value={0}>January</option>
-                    <option value={1}>February</option>
-                    <option value={2}>March</option>
-                    <option value={3}>April</option>
-                    <option value={4}>May</option>
-                    <option value={5}>June</option>
-                    <option value={6}>July</option>
-                    <option value={7}>August</option>
-                    <option value={8}>September</option>
-                    <option value={9}>October</option>
-                    <option value={10}>November</option>
-                    <option value={11}>December</option>
-                </select>
-                <label>Year:</label>
-                <input type="number" value={selectedYear} onChange={handleYearChange} />
+                <span>
+                    <label>Month | Year:</label>
+                <input type="month" onChange={handleMonthChange} />
+                </span>
             </div>
             <button onClick={handleReportGeneration}>Generate Report</button>
             <table>

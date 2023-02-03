@@ -16,12 +16,10 @@ const Costs = (props) => {
     
     // function that handles the submit of the form and adds the current cost to the costs array,
     // then resets the values in currCost for the next item
-    const handleSubmit = e => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        await saveData('costs', currCost);
         setCosts([...costs, currCost]);
-        setCurrCost({});
-
-        // reset the values in currCost
         setCurrCost({
             Category: '',
             Quantity: '',
@@ -29,13 +27,12 @@ const Costs = (props) => {
             Sum: '',
             Date: '',
         });
+        // reset the values in currCost
     };
 
     //function that renders the table after submit with use effect
     useEffect(() => {
-        // use local storage to save the costs with async functions
-        saveData('costs', costs);
-        // localStorage.setItem('costs', JSON.stringify(costs));
+        props.setCosts(costs);
     }, [costs]);
 
 
@@ -56,13 +53,13 @@ const Costs = (props) => {
         </form>
             <table className = "costsTable">
                 <thead>
-                    <tr>
+                    <tr className='tableHeader'>
                     {props.fields.map((field, index) => {return <th key={index}>{field.label}</th>})}
                     </tr>
                 </thead>
                 <tbody>
                     {costs?.map((cost, index) => {
-                        return( <tr key={index}>
+                        return( <tr className='tableRow' key={index}>
                             <td>{cost.Category}</td>
                             <td>{cost.Quantity}</td>
                             <td>{cost.Description}</td>
