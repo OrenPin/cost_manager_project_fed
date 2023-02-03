@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { saveData } from './localStorage';
 
-const Costs = () => {
+const Costs = (props) => {
     // use state for the costs for useEffect rendering and the current cost for the form
     const [currCost, setCurrCost] = useState({Date: new Date()});
     const [costs, setCosts] = useState([]);
@@ -41,68 +41,24 @@ const Costs = () => {
 
     return (
         // form for the costs
-        <div class= "form_div">
-            <form class= "costsForm" onSubmit={handleSubmit}>
-            <span class = "costsFormInputLabel">
-                <div class = "textDiv">
-                    Category:
-                    </div>
-                    <input
-                        class = "costsFormInput"
-                        type="text"
-                        name="category"
-                        value={currCost.Category}
-                        onChange={(e) => handleChange(e, 'Category')}
-                    />
-            </span>
-            <br />
-            <span class = "costsFormInputLabel">
-                <div class = "textDiv">
-                    Quantity:
-                    </div>
-                    <input
-                        class = "costsFormInput"
-                        type="number"
-                        name="quantity"
-                        value={currCost.Quantity}
-                        onChange={(e) => handleChange(e, 'Quantity')}
-                    />
-            </span>
-            <br />
-            <span class = "costsFormInputLabel">
-                <div class = "textDiv">
-                    Description:
-                    </div>
-                    <input
-                        class = "costsFormInput"
-                        type="text"
-                        name="description"
-                        value={currCost.Description}
-                        onChange={(e) => handleChange(e, 'Description')}
-                    />
-            </span>
-            <br />
-            <span class = "costsFormInputLabel">
-                <div class = "textDiv">
-                    Sum:
-                    </div>
-                    <input
-                        class = "costsFormInput"
-                        type="number"
-                        name="sum"
-                        value={currCost.Sum}
-                        onChange={(e) => handleChange(e, 'Sum')}
-                    />
-            </span>
-            <br />
-                <button type="submit">Add</button>
+        <div className= "form_div">
+        <form className= "costsForm" onSubmit={handleSubmit}>
+            {props.fields.map((field, index) => {
+                return (
+                    <span className = "costsFormInputLabel" key={index}>
+                        <label className = "textDiv">{field.label}</label>
+                        <input className = "costsFormInput" type={field.type} name={field.name} value={currCost[field.name]} onChange={(e) => handleChange(e, field.name)} />
+                        <br />
+                    </span>       
+                );
+            })}
+            <button type="submit">Add</button>
             </form>
-            <table class = "costsTable">
+            <table className = "costsTable">
                 <thead>
-                        <th>Category</th>
-                        <th>Quantity</th>
-                        <th>Description</th>
-                        <th>Sum</th>
+                    <tr>
+                    {props.fields.map((field, index) => {return <th key={index}>{field.label}</th>})}
+                    </tr>
                 </thead>
                 <tbody>
                     {costs.map((cost, index) => {
