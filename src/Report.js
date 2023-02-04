@@ -1,10 +1,11 @@
 import ReportPieChart from './Chart';
 import { useEffect, useState } from 'react';
+import './Report.css';
 
 const Report = (props) => {
 
     const f = (displayedCosts) => {
-        let categoryCount ={};
+        let categoryCount = {};
         displayedCosts?.forEach((cost) => {
             if (cost.Category in categoryCount)
                 categoryCount[cost.Category] += Number(cost.Sum);
@@ -15,7 +16,7 @@ const Report = (props) => {
         Object.keys(categoryCount)?.forEach((category) => {
             if (category == 'undefined')
                 category = 'Other';
-             x.push({Category: category, Sum: categoryCount[category]});
+            x.push({ Category: category, Sum: categoryCount[category] });
         });
         return x;
     }
@@ -27,31 +28,31 @@ const Report = (props) => {
         { Category: 'Clothes', Sum: 300 },
         { Category: 'Entertainment', Sum: 400 }
     ];
-         
-    useEffect(() => {setData(f(props.displayedCosts));}, [props.displayedCosts]);
+
+    useEffect(() => { setData(f(props.displayedCosts)); }, [props.displayedCosts]);
 
     return (
-        <div className= "reportDiv">
-            <div className='graphAndTableContainer'>         
-                <table className = "Table" >
-                <thead >
-                    <tr className='tableHeader'>
-                    {props.fields.map((field, index) => {return <th key={index}>{field.label}</th>})}
-                    </tr>
-                </thead>
-                <tbody>
-                    {props.displayedCosts?.map((cost, index) => {
-                        return (
-                            <tr className='tableRow' key={index}>
-                                <td>{cost.Category}</td>
-                                <td>{cost.Quantity}</td>
-                                <td>{cost.Description}</td>
-                                <td>{cost.Sum}</td>
-                                <td>{cost.Date}</td>
-                            </tr>
-                        );
-                    })}
-                </tbody>
+        <div className="reportDiv">
+            <div className='graphAndTableContainer'>
+                <table className="Table" >
+                    <thead >
+                        <tr className='tableHeader'>
+                            {props.fields.map((field, index) => { return <th key={index}>{field.label}</th> })}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {props.displayedCosts?.map((cost, index) => {
+                            return (
+                                <tr className='tableRow' key={index}>
+                                    <td>{cost.Category}</td>
+                                    <td>{cost.Quantity}</td>
+                                    <td>{cost.Description}</td>
+                                    <td>{cost.Sum}</td>
+                                    <td>{cost.Date}</td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
                 </table>
                 <div className='graphDiv'>
                     <ReportPieChart data={data} />
