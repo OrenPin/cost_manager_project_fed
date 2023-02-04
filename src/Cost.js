@@ -5,8 +5,12 @@ class Cost {
         this.Quantity = Quantity || '1';
         this.Description = Description || "No description";
         this.Sum = Sum || '0';
-        this.Date = Date || '2022-01-01';
+        this.Date = Date || setDefaultDate();
     }
+}
+
+const setDefaultDate = () => {
+    return new Date().toISOString().slice(0, 10);
 }
 
 const capitalizeFirstLetter = (string) => {
