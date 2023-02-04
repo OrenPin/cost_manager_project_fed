@@ -1,6 +1,6 @@
-import userEvent from '@testing-library/user-event';
 import React, { useEffect, useState } from 'react';
 import { saveData } from './localStorage';
+import './Costs.css';
 import Cost from './Cost.js';
 
 const Costs = (props) => {
@@ -59,14 +59,9 @@ const Costs = (props) => {
                 <tbody>
                     {costs?.map((cost, index) => {
                         return (<tr className='tableRow' key={index}>
-                            {/* {Object.keys(cost).map((key, index) => {
+                            {Object.keys(cost).map((key, index) => {
                                 return <td key={index}>{cost[key]}</td>
-                            })} */}
-                            <td>{cost.Category}</td>
-                            <td>{cost.Quantity}</td>
-                            <td>{cost.Description}</td>
-                            <td>{cost.Sum}</td>
-                            <td>{cost.Date}</td>
+                            })}
                         </tr>);
                     })}
                 </tbody>
