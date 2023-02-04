@@ -7,6 +7,7 @@ import Field from "./Field";
 
 function App() {
     const [costs, setCosts] = useState([]);
+    const [visible, setVisible] = useState(false);
     const fields = [
         new Field("Category", "text", "Category"),
         new Field("Quantity", "number", "Quantity"),
@@ -17,8 +18,8 @@ function App() {
 
     return (
         <div className = "mainDiv">
-            <Costs costs={costs} setCosts={setCosts} fields={fields} />
-            <Report costs={[]} />
+            <Costs costs={costs} setCosts={setCosts} fields={fields} visible={visible} setVisible={setVisible} />
+            <Report costs={costs} fields={fields} visible={visible} setVisible={setVisible} />
         </div>
     );
 }
