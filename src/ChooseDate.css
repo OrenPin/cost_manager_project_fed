@@ -1,0 +1,22 @@
+.chooseDateDiv {
+    width: 100%;
+    background-color: rgb(222, 223, 225);
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+  }
+  
+  .chooseDateDiv  span{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+  }
+  
+  .reportButton {
+    width: 10%;
+    height: 30px;
+    background-color: rgb(47, 95, 191);
+    color: white;
+    border: black 1px solid;
+    border-radius: 10px;
+  }

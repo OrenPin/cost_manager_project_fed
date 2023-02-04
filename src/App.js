@@ -1,9 +1,11 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import Costs from "./Costs";
 import Report from "./Report";
+import ChooseDate from "./ChooseDate";
 import { saveData, getData } from "./localStorage";
 import './App.css'
 import Field from "./Field";
+
 
 function App() {
     const [costs, setCosts] = useState([]);
@@ -29,7 +31,7 @@ function App() {
 
     // function that handles the change of the year selection
 
-      const handleReportGeneration = async () => {
+    const handleReportGeneration = async () => {
         setVisible(true);
         let costs = await getData('costs');
         let filteredCosts = costs.filter(cost => {
@@ -43,21 +45,14 @@ function App() {
         setVisible(false);
     };
 
-    useEffect(() => {}, [visible]);
+    useEffect(() => { }, [visible]);
 
 
     return (
-        <div className = "mainDiv">
+        <div className="mainDiv">
             <Costs costs={costs} setCosts={setCosts} fields={fields} visible={visible} setVisible={setVisible} />
             <Report displayedCosts={displayedCosts} fields={fields} visible={visible} setVisible={setVisible} />
-            <div className='chooseDateDiv'>
-                <span>
-                    <label>Month | Year:</label>
-                    <input type="month" onChange={handleMonthChange} />
-                </span>
-                <button className='reportButton' onClick={handleReportGeneration}>Generate Report</button>
-                <button className='reportButton' onClick={closeReport}>Close Report</button>
-            </div >
+            <ChooseDate handleMonthChange={handleMonthChange} handleReportGeneration={handleReportGeneration} closeReport={closeReport}></ChooseDate>
         </div>
     );
 }

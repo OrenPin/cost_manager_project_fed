@@ -10,11 +10,11 @@ const Costs = (props) => {
     // function that handles the change of the input fields
     const handleChange = (e, inputname) => {
         const { value = "" } = e.currentTarget;
-        const newcurrCost = {...currCost};
+        const newcurrCost = { ...currCost };
         newcurrCost[inputname] = value;
         setCurrCost(newcurrCost);
     };
-    
+
     // function that handles the submit of the form and adds the current cost to the costs array,
     // then resets the values in currCost for the next item
     const handleSubmit = async (e) => {
@@ -42,35 +42,35 @@ const Costs = (props) => {
 
     return (
         // form for the costs
-        <div className= "formDiv" style={{display: props.visible ? 'none' : 'flex'}}>
-        <form className= "costsForm" onSubmit={handleSubmit}>
-            {props.fields.map((field, index) => {
-                return (
-                    <span className = "costsFormInputLabel" key={index}>
-                        <label className = "textDiv">{field.label}</label>
-                        <input className = "costsFormInput" type={field.type} name={field.name} value={currCost[field.name]} onChange={(e) => handleChange(e, field.name)} />
-                        <br />
-                    </span>       
-                );
-            })}
-            <button className='formBtn' type="submit">Add</button>
-        </form>
-            <table className = "costsTable">
+        <div className="formDiv" style={{ display: props.visible ? 'none' : 'flex' }}>
+            <form className="costsForm" onSubmit={handleSubmit}>
+                {props.fields.map((field, index) => {
+                    return (
+                        <span className="costsFormInputLabel" key={index}>
+                            <label className="textDiv">{field.label}</label>
+                            <input className="costsFormInput" type={field.type} name={field.name} value={currCost[field.name]} onChange={(e) => handleChange(e, field.name)} />
+                            <br />
+                        </span>
+                    );
+                })}
+                <button className='formBtn' type="submit">Add</button>
+            </form>
+            <table className="costsTable">
                 <thead>
                     <tr className='tableHeader'>
-                    {props.fields.map((field, index) => {return <th key={index}>{field.label}</th>})}
+                        {props.fields.map((field, index) => { return <th key={index}>{field.label}</th> })}
                     </tr>
                 </thead>
                 <tbody>
                     {costs?.map((cost, index) => {
-                        return( <tr className='tableRow' key={index}>
+                        return (<tr className='tableRow' key={index}>
                             <td>{cost.Category}</td>
                             <td>{cost.Quantity}</td>
                             <td>{cost.Description}</td>
                             <td>{cost.Sum}</td>
                             <td>{cost.Date}</td>
                         </tr>);
-                })}
+                    })}
                 </tbody>
             </table>
         </div>
