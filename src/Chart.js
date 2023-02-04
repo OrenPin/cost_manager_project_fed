@@ -2,7 +2,7 @@ import React from "react";
 import { PieChart, Pie, Cell, Tooltip} from "recharts";
 
 const ReportPieChart = ({ data }) => {
-    // const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#FF0000', '#000000', '#0000FF', '#00FF00', '#FF00FF', '#FFFF00', '#00FFFF', '#800000', '#808000', '#008000', '#800080', '#808080', '#008080'];
+    // const COLORS = [ 'red', 'green', 'yellow', 'orange', 'purple', 'pink', 'brown', 'grey', 'black'];
     return (
         <PieChart width={400} height={400} className="pieChart">
             <Pie 

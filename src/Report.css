@@ -16,7 +16,7 @@
     height: 100%;
     width: 100%;
     /* background-color: rgb(255, 255, 255); */
-    background: radial-gradient(circle, rgb(126, 133, 168) 0%, rgb(26, 6, 180) 100%);
+    background: radial-gradient(circle, rgb(126, 133, 168) 0%, rgb(41, 24, 172) 100%);
     display: flex;
     justify-content: flex-start;
     align-items: center;
