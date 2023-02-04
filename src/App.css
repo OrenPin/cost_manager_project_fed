@@ -159,22 +159,14 @@ body {
 } 
 
 .reportDiv {
+  height: 95%;
   width: 100%;
   background-color: rgb(234, 234, 234);
   display: flex;
   flex-direction: column;
 }
 
-.reportDivs {
-  height: 95%;
-  width: 100%;
-  background-color: rgb(222, 223, 225);
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-direction: column;
-  padding-bottom: 0px;
-}
+
 .graphAndTableContainer {
   height: 100%;
   width: 100%;
