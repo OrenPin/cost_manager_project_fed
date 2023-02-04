@@ -22,7 +22,8 @@ const Costs = (props) => {
         e.preventDefault();
         await saveData('costs', currCost);
         setCosts([...costs, currCost]);
-        setCurrCost(new Cost()); // reset the values in currCost for the next item
+        e.target.reset(); // reset the values in the inputs
+        setCurrCost(new Cost()); 
     };
 
     //function that renders the table after submit with use effect
@@ -49,6 +50,7 @@ const Costs = (props) => {
                     );
                 })}
                 <button className='formBtn' type="submit">Add</button>
+                {/* <button className='formBtn' type="reset">Reset Form</button> */}
             </form>
             <table className="Table">
                 <thead>
