@@ -1,3 +1,4 @@
+import userEvent from '@testing-library/user-event';
 import React, { useEffect, useState } from 'react';
 import { saveData } from './localStorage';
 
@@ -35,10 +36,13 @@ const Costs = (props) => {
         props.setCosts(costs);
     }, [costs]);
 
+    useEffect(() => {
+        props.setVisible(props.visible);
+    }, [props.visible]);
 
     return (
         // form for the costs
-        <div className= "form_div">
+        <div className= "formDiv" style={{display: props.visible ? 'none' : 'flex'}}>
         <form className= "costsForm" onSubmit={handleSubmit}>
             {props.fields.map((field, index) => {
                 return (
@@ -49,7 +53,7 @@ const Costs = (props) => {
                     </span>       
                 );
             })}
-            <button type="submit">Add</button>
+            <button className='formBtn' type="submit">Add</button>
         </form>
             <table className = "costsTable">
                 <thead>
