@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Costs from "./Costs";
 import Report from "./Report";
-import ChooseDate from "./ChooseDate";
+import ChooseDate from "./ChooseDate.js";
 import { saveData, getData } from "./localStorage";
 import './App.css'
 import Field from "./Field";
