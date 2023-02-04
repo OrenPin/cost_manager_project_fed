@@ -9,7 +9,7 @@ import Field from "./Field";
 
 function App() {
     const [costs, setCosts] = useState([]);
-    const [visible, setVisible] = useState(false);
+    const [visible, setVisible] = useState(true);
     const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
     const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
     const [displayedCosts, setDisplayedCosts] = useState([]);
@@ -32,7 +32,7 @@ function App() {
     // function that handles the change of the year selection
 
     const handleReportGeneration = async () => {
-        setVisible(true);
+        setVisible(false);
         let costs = await getData('costs');
         let filteredCosts = costs.filter(cost => {
             let date = new Date(cost.Date);
@@ -42,7 +42,7 @@ function App() {
     };
 
     const closeReport = () => {
-        setVisible(false);
+        setVisible(true);
     };
 
     useEffect(() => { }, [visible]);
@@ -50,8 +50,12 @@ function App() {
 
     return (
         <div className="mainDiv">
-            <Costs costs={costs} setCosts={setCosts} fields={fields} visible={visible} setVisible={setVisible} />
-            <Report displayedCosts={displayedCosts} fields={fields} visible={visible} setVisible={setVisible} />
+            {
+                visible ?
+                    <Costs costs={costs} setCosts={setCosts} fields={fields} visible={visible} setVisible={setVisible} />
+                    :
+                    <Report displayedCosts={displayedCosts} fields={fields} visible={visible} setVisible={setVisible} />
+            }
             <ChooseDate handleMonthChange={handleMonthChange} handleReportGeneration={handleReportGeneration} closeReport={closeReport}></ChooseDate>
         </div>
     );
