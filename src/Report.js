@@ -48,8 +48,8 @@ const Report = (props) => {
 
                     <ReportPieChart data={categoryCountArray} />
                 </div>
-            </div> 
-            </div>  
+            </div>
+        </div>
     );
 };
 

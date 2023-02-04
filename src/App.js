@@ -1,13 +1,15 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import Costs from "./Costs";
 import Report from "./Report";
+import ChooseDate from "./ChooseDate.js";
 import { saveData, getData } from "./localStorage";
 import './App.css'
 import Field from "./Field";
 
+
 function App() {
     const [costs, setCosts] = useState([]);
-    const [visible, setVisible] = useState(false);
+    const [visible, setVisible] = useState(true);
     const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
     const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
     const [displayedCosts, setDisplayedCosts] = useState([]);
@@ -29,8 +31,8 @@ function App() {
 
     // function that handles the change of the year selection
 
-      const handleReportGeneration = async () => {
-        setVisible(true);
+    const handleReportGeneration = async () => {
+        setVisible(false);
         let costs = await getData('costs');
         let filteredCosts = costs.filter(cost => {
             let date = new Date(cost.Date);
@@ -40,24 +42,21 @@ function App() {
     };
 
     const closeReport = () => {
-        setVisible(false);
+        setVisible(true);
     };
 
-    useEffect(() => {}, [visible]);
+    useEffect(() => { }, [visible]);
 
 
     return (
-        <div className = "mainDiv">
-            <Costs costs={costs} setCosts={setCosts} fields={fields} visible={visible} setVisible={setVisible} />
-            <Report displayedCosts={displayedCosts} fields={fields} visible={visible} setVisible={setVisible} />
-            <div className='chooseDateDiv'>
-                <span>
-                    <label>Month | Year:</label>
-                    <input type="month" onChange={handleMonthChange} />
-                </span>
-                <button className='reportButton' onClick={handleReportGeneration}>Generate Report</button>
-                <button className='reportButton' onClick={closeReport}>Close Report</button>
-            </div >
+        <div className="mainDiv">
+            {
+                visible ?
+                    <Costs costs={costs} setCosts={setCosts} fields={fields} visible={visible} setVisible={setVisible} />
+                    :
+                    <Report displayedCosts={displayedCosts} fields={fields} visible={visible} setVisible={setVisible} />
+            }
+            <ChooseDate handleMonthChange={handleMonthChange} handleReportGeneration={handleReportGeneration} closeReport={closeReport}></ChooseDate>
         </div>
     );
 }
