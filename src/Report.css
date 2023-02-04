@@ -1,0 +1,33 @@
+
+.reportDiv {
+    height: 95%;
+    width: 100%;
+    background-color: rgb(234, 234, 234);
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .reportDiv.show {
+    opacity: 1;
+  }
+  
+  .graphAndTableContainer {
+    height: 100%;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+  }
+  
+  .graphDiv {
+    height: 100%;
+    width: 500px;
+    background-color: rgb(222, 223, 225);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
