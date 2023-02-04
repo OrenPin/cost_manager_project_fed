@@ -1,10 +1,26 @@
 import React from "react";
-import { PieChart, Pie} from "recharts";
+import { PieChart, Pie, Cell, Tooltip } from "recharts";
 
 const ReportPieChart = ({ data }) => {
+    const COLORS = ['red', 'green', 'yellow', 'orange', 'purple', 'pink', 'brown', 'grey', 'black'];
     return (
         <PieChart width={400} height={400} className="pieChart">
-            <Pie data={data} dataKey="Sum" nameKey="Category" cx="50%" cy="50%" fill="#8884d8" label />
+            <Pie
+                data={data}
+                dataKey="Sum"
+                nameKey="Category"
+                cx={200}
+                cy={200}
+                fill={null}
+                innerRadius={90}
+                outerRadius={120}
+                paddingAngle={2}
+                label
+            >
+                {data?.map((entry, index) => <Cell key={index} fill={COLORS[index % COLORS.length]} />)
+                }
+            </Pie>
+            <Tooltip />
         </PieChart>
     );
 };

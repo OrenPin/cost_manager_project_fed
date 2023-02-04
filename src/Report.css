@@ -15,7 +15,8 @@
   .graphAndTableContainer {
     height: 100%;
     width: 100%;
-    background-color: rgb(255, 255, 255);
+    /* background-color: rgb(255, 255, 255); */
+    background: radial-gradient(circle, rgb(126, 133, 168) 0%, rgb(41, 24, 172) 100%);
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -25,7 +26,7 @@
   .graphDiv {
     height: 100%;
     width: 500px;
-    background-color: rgb(222, 223, 225);
+    /* background-color: rgb(222, 223, 225); */
     display: flex;
     justify-content: center;
     align-items: center;
