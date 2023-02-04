@@ -1,10 +1,11 @@
 import userEvent from '@testing-library/user-event';
 import React, { useEffect, useState } from 'react';
 import { saveData } from './localStorage';
+import Cost from './Cost.js';
 
 const Costs = (props) => {
     // use state for the costs for useEffect rendering and the current cost for the form
-    const [currCost, setCurrCost] = useState({});
+    const [currCost, setCurrCost] = useState(new Cost());
     const [costs, setCosts] = useState([]);
 
     // function that handles the change of the input fields
@@ -21,14 +22,7 @@ const Costs = (props) => {
         e.preventDefault();
         await saveData('costs', currCost);
         setCosts([...costs, currCost]);
-        setCurrCost({
-            Category: '',
-            Quantity: '',
-            Description: '',
-            Sum: '',
-            Date: '',
-        });
-        // reset the values in currCost
+        setCurrCost(new Cost()); // reset the values in currCost for the next item
     };
 
     //function that renders the table after submit with use effect
@@ -36,6 +30,7 @@ const Costs = (props) => {
         props.setCosts(costs);
     }, [costs]);
 
+    //function that updates the App.js state for the visibility of the form
     useEffect(() => {
         props.setVisible(props.visible);
     }, [props.visible]);
@@ -48,7 +43,7 @@ const Costs = (props) => {
                     return (
                         <span className="costsFormInputLabel" key={index}>
                             <label className="textDiv">{field.label}</label>
-                            <input className="costsFormInput" type={field.type} name={field.name} value={currCost[field.name]} onChange={(e) => handleChange(e, field.name)} />
+                            <input className="costsFormInput" type={field.type} name={field.name} onChange={(e) => handleChange(e, field.name)} />
                             <br />
                         </span>
                     );
@@ -64,6 +59,9 @@ const Costs = (props) => {
                 <tbody>
                     {costs?.map((cost, index) => {
                         return (<tr className='tableRow' key={index}>
+                            {/* {Object.keys(cost).map((key, index) => {
+                                return <td key={index}>{cost[key]}</td>
+                            })} */}
                             <td>{cost.Category}</td>
                             <td>{cost.Quantity}</td>
                             <td>{cost.Description}</td>
