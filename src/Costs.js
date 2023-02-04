@@ -42,7 +42,7 @@ const Costs = (props) => {
 
     return (
         // form for the costs
-        <div className="formDiv" style={{ display: props.visible ? 'none' : 'flex' }}>
+        <div className="formDiv">
             <form className="costsForm" onSubmit={handleSubmit}>
                 {props.fields.map((field, index) => {
                     return (
@@ -55,7 +55,7 @@ const Costs = (props) => {
                 })}
                 <button className='formBtn' type="submit">Add</button>
             </form>
-            <table className="costsTable">
+            <table className="Table">
                 <thead>
                     <tr className='tableHeader'>
                         {props.fields.map((field, index) => { return <th key={index}>{field.label}</th> })}
