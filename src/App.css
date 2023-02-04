@@ -102,37 +102,3 @@ body {
   border-right: 1px solid black;
   border-bottom: 1px solid black;
 } 
-
-.reportDiv {
-  height: 95%;
-  width: 100%;
-  background-color: rgb(234, 234, 234);
-  display: flex;
-  flex-direction: column;
-  transition: all 0.3s ease-in-out;
-}
-
-.reportDiv.show {
-  opacity: 1;
-}
-
-.graphAndTableContainer {
-  height: 100%;
-  width: 100%;
-  background: radial-gradient(circle, rgb(126, 133, 168) 0%, rgb(26, 6, 180) 100%);
-  color-scheme: dark;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-direction: row;
-}
-
-.graphDiv {
-  height: auto;
-  width: 500px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
