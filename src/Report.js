@@ -4,7 +4,7 @@ import './Report.css';
 
 const Report = (props) => {
 
-    const f = (displayedCosts) => {
+    const formatDataForGraph = (displayedCosts) => {
         let categoryCount = {};
         displayedCosts?.forEach((cost) => {
             if (cost.Category in categoryCount)
@@ -12,13 +12,13 @@ const Report = (props) => {
             else
                 categoryCount[cost.Category] = Number(cost.Sum);
         });
-        let x = []
+        let formattedData = []
         Object.keys(categoryCount)?.forEach((category) => {
             if (category == 'undefined')
                 category = 'Other';
-            x.push({ Category: category, Sum: categoryCount[category] });
+            formattedData.push({ Category: category, Sum: categoryCount[category] });
         });
-        return x;
+        return formattedData;
     }
 
     const [data, setData] = useState(); // data for the pie chart (category and sum)
@@ -29,7 +29,7 @@ const Report = (props) => {
         { Category: 'Entertainment', Sum: 400 }
     ];
 
-    useEffect(() => { setData(f(props.displayedCosts)); }, [props.displayedCosts]);
+    useEffect(() => { setData(formatDataForGraph(props.displayedCosts)); }, [props.displayedCosts]);
 
     return (
         <div className="reportDiv">
