@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { getData } from "./LocalStorage";
-import ChooseDate from "./ChooseDate";
-import Report from "./Report";
-import CostsForm from "./CostsForm";
-import Field from "./Field";
+import { getData } from "./localStorage";
+import ChooseDate from "./chooseDate";
+import Report from "./report";
+import CostsForm from "./costsForm";
+import Field from "./field";
 import './App.css'  
 
 
