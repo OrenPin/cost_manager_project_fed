@@ -1,4 +1,4 @@
-import './ChooseDate.css'
+import './chooseDate.css'
 
 // This component is used to choose the month and year for which the report is to be generated
 // It also has a button to generate the report and a button to close the report
