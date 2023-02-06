@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { saveData } from './localStorage';
-import './Costs.css';
-import Cost from './Cost.js';
+import './costsForm.css';
+import CostItem from './costItem.js';
 
-const Costs = (props) => {
+const CostsForm = (props) => {
     // use state for the costs for useEffect rendering and the current cost for the form
-    const [currCost, setCurrCost] = useState(new Cost());
+    const [currCost, setCurrCost] = useState(new CostItem());
     const [costs, setCosts] = useState([]);
 
     // function that handles the change of the input fields
@@ -23,7 +23,7 @@ const Costs = (props) => {
         await saveData('costs', currCost);
         setCosts([...costs, currCost]);
         e.target.reset(); // reset the values in the inputs
-        setCurrCost(new Cost()); 
+        setCurrCost(new CostItem()); 
     };
 
     //function that renders the table after submit with use effect
@@ -72,4 +72,4 @@ const Costs = (props) => {
     );
 };
 
-export default Costs;
+export default CostsForm;

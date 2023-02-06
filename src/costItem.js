@@ -1,4 +1,4 @@
-class Cost {
+class CostItem {
 
     constructor(Category, Quantity, Description, Sum, Date) {
         this.Category = capitalizeFirstLetter(Category);
@@ -19,4 +19,4 @@ const capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 }
 
-export default Cost;
+export default CostItem;

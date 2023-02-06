@@ -1,4 +1,4 @@
-import './ChooseDate.css'
+import './chooseDate.css'
 
 function ChooseDate(props) {
     return (<div className='chooseDateDiv'>
