@@ -1,3 +1,5 @@
+// Eylam Kadden 206516957
+// Oren Pinhasov 318552734
 // Class for cost item
 // Set default values for empty fields
 class CostItem {
