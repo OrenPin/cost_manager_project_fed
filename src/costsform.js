@@ -1,3 +1,5 @@
+// Eylam Kadden 206516957
+// Oren Pinhasov 318552734
 import React, { useEffect, useState } from 'react';
 import { saveData } from './localstorage';
 import {CostItem, capitalizeFirstLetter} from './costitem.js';
