@@ -57,9 +57,11 @@ const CostsForm = (props) => {
                             <label className="textDiv">{field.label}</label>
                             {
                                 field.required ? 
-                                <input className="costsFormInput" type={field.type} name={field.name} onChange={(e) => handleChange(e, field.name)} required/>
+                                <input className="costsFormInput" type={field.type} name={field.name} onChange=
+                                {(e) => handleChange(e, field.name)} required/>
                                 :   
-                                <input className="costsFormInput" type={field.type} name={field.name} onChange={(e) => handleChange(e, field.name)}/>
+                                <input className="costsFormInput" type={field.type} name={field.name} onChange=
+                                {(e) => handleChange(e, field.name)}/>
                             }  
                             <br />
                         </span>
