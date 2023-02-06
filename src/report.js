@@ -1,3 +1,5 @@
+// Eylam Kadden 206516957
+// Oren Pinhasov 318552734
 import ReportPieChart from './chart';
 import { useEffect, useState } from 'react';
 import './report.css';
