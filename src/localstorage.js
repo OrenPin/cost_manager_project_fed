@@ -1,3 +1,5 @@
+// Eylam Kadden 206516957
+// Oren Pinhasov 318552734
 // Save data to local storage using async method
 export const saveData = async (key, value) => {
   let newCosts = await getData(key);
