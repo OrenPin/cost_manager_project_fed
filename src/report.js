@@ -18,7 +18,7 @@ const Report = (props) => {
         });
         let formattedData = []
         Object.keys(categoryCount)?.forEach((category) => {
-            if (category == 'undefined')
+            if (category === undefined || category === null || category === '')
                 category = 'Other';
             formattedData.push({ Category: category, Sum: categoryCount[category] });
         });
