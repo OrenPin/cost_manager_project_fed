@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { getData } from "./localStorage";
-import ChooseDate from "./chooseDate";
+import { getData } from "./localstorage";
+import ChooseDate from "./choosedate";
 import Report from "./report";
-import CostsForm from "./costsForm";
+import CostsForm from "./costsform";
 import Field from "./field";
-import './App.css'  
+import './app.css'  
 
 
 function App() {
