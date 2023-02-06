@@ -71,6 +71,7 @@
     border-radius: 10px;
     margin-top: 20px;
     transition: all 0.3s ease;
+    font-weight: bold;
   }
   
   .formBtn:hover {

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { saveData } from './localStorage';
+import {CostItem, capitalizeFirstLetter} from './costItem.js';
 import './costsForm.css';
-import CostItem from './costItem.js';
 
+// form component that renders the form and the table with the costs
 const CostsForm = (props) => {
     // use state for the costs for useEffect rendering and the current cost for the form
     const [currCost, setCurrCost] = useState(new CostItem());
@@ -11,8 +12,15 @@ const CostsForm = (props) => {
     // function that handles the change of the input fields
     const handleChange = (e, inputname) => {
         const { value = "" } = e.currentTarget;
-        const newcurrCost = { ...currCost };
+        const newcurrCost = new CostItem();
+        newcurrCost.copyConstructor(currCost);
+        if (inputname === 'Category') {
+            newcurrCost[inputname] = capitalizeFirstLetter(value);
+        }
+        else
+        {
         newcurrCost[inputname] = value;
+        }
         setCurrCost(newcurrCost);
     };
 
@@ -44,13 +52,18 @@ const CostsForm = (props) => {
                     return (
                         <span className="costsFormInputLabel" key={index}>
                             <label className="textDiv">{field.label}</label>
-                            <input className="costsFormInput" type={field.type} name={field.name} onChange={(e) => handleChange(e, field.name)} />
+                            {
+                                field.required ? 
+                                <input className="costsFormInput" type={field.type} name={field.name} onChange={(e) => handleChange(e, field.name)} required/>
+                                :   
+                                <input className="costsFormInput" type={field.type} name={field.name} onChange={(e) => handleChange(e, field.name)}/>
+                            }  
                             <br />
                         </span>
                     );
                 })}
                 <button className='formBtn' type="submit">Add</button>
-                {/* <button className='formBtn' type="reset">Reset Form</button> */}
+                <button className='formBtn' type="reset">Reset Form</button>
             </form>
             <table className="Table">
                 <thead>

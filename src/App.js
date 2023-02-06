@@ -16,10 +16,10 @@ function App() {
 
     // array of fields that will be displayed in the costs form and the report
     const fields = [
-        new Field("Category", "text", "Category"),
+        new Field("Category", "text", "Category", true),
         new Field("Quantity", "number", "Quantity"),
         new Field("Description", "text", "Description"),
-        new Field("Sum", "number", "Sum"),
+        new Field("Sum", "number", "Sum", true),
         new Field("Date", "date", "Date"),
     ];
 
