@@ -1,6 +1,6 @@
-import ReportPieChart from './Chart';
+import ReportPieChart from './chart';
 import { useEffect, useState } from 'react';
-import './Report.css';
+import './report.css';
 
 // component that displays the report
 const Report = (props) => {
