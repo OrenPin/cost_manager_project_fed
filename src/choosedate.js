@@ -1,3 +1,5 @@
+// Eylam Kadden 206516957
+// Oren Pinhasov 318552734
 import './choosedate.css'
 
 // This component is used to choose the month and year for which the report is to be generated
