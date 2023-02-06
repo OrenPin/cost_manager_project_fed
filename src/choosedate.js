@@ -11,7 +11,7 @@ function ChooseDate(props) {
     return (<div className='chooseDateDiv'>
         <span>
             <label>Month | Year:</label>
-            <input type="month" onChange={props.handleMonthChange}/>
+            <input type="month" onChange={props.handleMonthChange} required/>
         </span>
         <button className='reportButton' onClick={props.handleReportGeneration}>Generate Report</button>
         <button className='reportButton' onClick={props.closeReport}>Close Report</button>
