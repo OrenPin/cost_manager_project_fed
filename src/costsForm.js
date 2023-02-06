@@ -1,18 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { saveData } from './localStorage';
-import './Costs.css';
-import Cost from './Cost.js';
+import {CostItem, capitalizeFirstLetter} from './costItem.js';
+import './costsForm.css';
 
-const Costs = (props) => {
+// form component that renders the form and the table with the costs
+const CostsForm = (props) => {
     // use state for the costs for useEffect rendering and the current cost for the form
-    const [currCost, setCurrCost] = useState(new Cost());
+    const [currCost, setCurrCost] = useState(new CostItem());
     const [costs, setCosts] = useState([]);
 
     // function that handles the change of the input fields
     const handleChange = (e, inputname) => {
         const { value = "" } = e.currentTarget;
-        const newcurrCost = { ...currCost };
+        const newcurrCost = new CostItem();
+        newcurrCost.copyConstructor(currCost);
+        if (inputname === 'Category') {
+            newcurrCost[inputname] = capitalizeFirstLetter(value);
+        }
+        else
+        {
         newcurrCost[inputname] = value;
+        }
         setCurrCost(newcurrCost);
     };
 
@@ -23,7 +31,7 @@ const Costs = (props) => {
         await saveData('costs', currCost);
         setCosts([...costs, currCost]);
         e.target.reset(); // reset the values in the inputs
-        setCurrCost(new Cost()); 
+        setCurrCost(new CostItem()); 
     };
 
     //function that renders the table after submit with use effect
@@ -44,13 +52,18 @@ const Costs = (props) => {
                     return (
                         <span className="costsFormInputLabel" key={index}>
                             <label className="textDiv">{field.label}</label>
-                            <input className="costsFormInput" type={field.type} name={field.name} onChange={(e) => handleChange(e, field.name)} />
+                            {
+                                field.required ? 
+                                <input className="costsFormInput" type={field.type} name={field.name} onChange={(e) => handleChange(e, field.name)} required/>
+                                :   
+                                <input className="costsFormInput" type={field.type} name={field.name} onChange={(e) => handleChange(e, field.name)}/>
+                            }  
                             <br />
                         </span>
                     );
                 })}
                 <button className='formBtn' type="submit">Add</button>
-                {/* <button className='formBtn' type="reset">Reset Form</button> */}
+                <button className='formBtn' type="reset">Reset Form</button>
             </form>
             <table className="Table">
                 <thead>
@@ -72,4 +85,4 @@ const Costs = (props) => {
     );
 };
 
-export default Costs;
+export default CostsForm;

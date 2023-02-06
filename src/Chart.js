@@ -1,8 +1,12 @@
 import React from "react";
 import { PieChart, Pie, Cell, Tooltip } from "recharts";
 
+// component that renders the pie chart
 const ReportPieChart = ({ data }) => {
-    const COLORS = ['red', 'green', 'yellow', 'orange', 'purple', 'pink', 'brown', 'grey', 'black'];
+    // colors for the pie chart
+    const pieChartColors = ['red', 'yellow', 'orange', 'pink', 'brown', 'grey', 'black'];
+
+    // returns the pie chart
     return (
         <PieChart width={400} height={400} className="pieChart">
             <Pie
@@ -17,7 +21,9 @@ const ReportPieChart = ({ data }) => {
                 paddingAngle={2}
                 label
             >
-                {data?.map((entry, index) => <Cell key={index} fill={COLORS[index % COLORS.length]} />)
+                
+                {//sets the colors for the pie chart parts
+                data?.map((entry, index) => <Cell key={index} fill={pieChartColors[index % pieChartColors.length]} />)
                 }
             </Pie>
             <Tooltip />

@@ -1,9 +1,11 @@
-import ReportPieChart from './Chart';
+import ReportPieChart from './chart';
 import { useEffect, useState } from 'react';
-import './Report.css';
+import './report.css';
 
+// component that displays the report
 const Report = (props) => {
 
+    // function that formats the data for the pie chart
     const formatDataForGraph = (displayedCosts) => {
         let categoryCount = {};
         displayedCosts?.forEach((cost) => {
@@ -22,13 +24,8 @@ const Report = (props) => {
     }
 
     const [data, setData] = useState(); // data for the pie chart (category and sum)
-    const fakeData = [
-        { Category: 'Food', Sum: 100 },
-        { Category: 'Transport', Sum: 200 },
-        { Category: 'Clothes', Sum: 300 },
-        { Category: 'Entertainment', Sum: 400 }
-    ];
 
+    // update the data for the pie chart when the displayed costs change
     useEffect(() => { setData(formatDataForGraph(props.displayedCosts)); }, [props.displayedCosts]);
 
     return (
