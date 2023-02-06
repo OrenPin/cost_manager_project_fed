@@ -11,7 +11,7 @@ function ChooseDate(props) {
     return (<div className='chooseDateDiv'>
         <span>
             <label>Month | Year:</label>
-            <input type="month" onChange={props.handleMonthChange} value= {new Date().toISOString().slice(0,7)}/>
+            <input type="month" onChange={props.handleMonthChange}/>
         </span>
         <button className='reportButton' onClick={props.handleReportGeneration}>Generate Report</button>
         <button className='reportButton' onClick={props.closeReport}>Close Report</button>
