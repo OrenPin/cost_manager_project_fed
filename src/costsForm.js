@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { saveData } from './LocalStorage';
-import {CostItem, capitalizeFirstLetter} from './CostItem.js';
-import './CostsForm.css';
+import { saveData } from './localStorage';
+import {CostItem, capitalizeFirstLetter} from './costItem.js';
+import './costsForm.css';
 
 // form component that renders the form and the table with the costs
 const CostsForm = (props) => {
