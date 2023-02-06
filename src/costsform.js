@@ -24,6 +24,7 @@ const CostsForm = (props) => {
         setCurrCost(newcurrCost);
     };
 
+    
     // function that handles the submit of the form and adds the current cost to the costs array,
     // then resets the values in currCost for the next item
     const handleSubmit = async (e) => {
