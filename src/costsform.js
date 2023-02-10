@@ -28,14 +28,18 @@ const CostsForm = (props) => {
 
     
     // function that handles the submit of the form and adds the current cost to the costs array,
-    // then resets the values in currCost for the next item
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        await saveData('costs', currCost);
-        setCosts([...costs, currCost]);
-        e.target.reset(); // reset the values in the inputs
-        setCurrCost(new CostItem()); 
-    };
+        saveData('costs', currCost)
+          .then(() => {
+            setCosts([...costs, currCost]);
+            e.target.reset(); // reset the values in the inputs
+            setCurrCost(new CostItem());
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      };
 
     //function that renders the table after submit with use effect
     useEffect(() => {

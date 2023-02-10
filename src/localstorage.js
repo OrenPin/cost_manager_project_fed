@@ -9,7 +9,13 @@ export const saveData = async (key, value) => {
 
 // Get data from local storage using async method
 export const getData = async (key) => {
-  let data = localStorage.getItem(key);
-  return JSON.parse(data) || [];
+  return new Promise((resolve, reject) => {
+    try {
+      let data = localStorage.getItem(key);
+      resolve(JSON.parse(data) || []);
+    } catch (error) {
+      reject("No data found");
+    }
+  });
 };
 

@@ -33,14 +33,19 @@ function App() {
     };
 
     // function that handles the change of the year selection
-    const handleReportGeneration = async () => {
-        setVisible(false);
-        let costs = await getData('costs');
-        let filteredCosts = costs.filter(cost => {
+    const handleReportGeneration = () => {
+      setVisible(false);
+      getData('costs')
+        .then(costs => {
+          let filteredCosts = costs.filter(cost => {
             let date = new Date(cost.Date);
             return date.getMonth() === selectedMonth && date.getFullYear() === selectedYear;
+          });
+          setDisplayedCosts(filteredCosts);
+        })
+        .catch(error => {
+          console.error(error);
         });
-        setDisplayedCosts(filteredCosts);
     };
 
     // function that closes the report and displays the costs form
